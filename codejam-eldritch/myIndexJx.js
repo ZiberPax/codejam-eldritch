@@ -3,6 +3,7 @@ import cardsDataGreen from './data/mythicCards/green/index.js';
 import cardsDataBrown from './data/mythicCards/brown/index.js';
 import cardsDataBlue from './data/mythicCards/blue/index.js';
 
+
 /* Variables for tracker start */
 
 let greenStageOne = document.querySelector('.stageOneGreen');
@@ -86,10 +87,28 @@ function shubNiggurathChoice () {
    trackerUpdate(ancientsNumber)
 }
 
-azathoth.addEventListener('click', azathothChoice);
-cthulhu.addEventListener('click', cthulhuChoice);
-iogSothoth.addEventListener('click', iogSothothChoice);
-shubNiggurath.addEventListener('click', shubNiggurathChoice);
+azathoth.onclick = function () {
+   azathothChoice()
+   document.querySelector('.body').style.backgroundImage = 'url(./assets/azatot.jpg)'
+};
+
+
+cthulhu.onclick = function () {
+   cthulhuChoice()
+   document.querySelector('.body').style.backgroundImage = 'url(./assets/ktulkhu-andree-wallin-cthulhu-behemoth-monster-tentacles-sig.jpg)'
+};
+
+iogSothoth.onclick = function () {
+   iogSothothChoice()
+   document.querySelector('.body').style.backgroundImage = 'url(./assets/iogSothoth.jpg)'
+};
+
+shubNiggurath.onclick = function () {
+   shubNiggurathChoice()
+   document.querySelector('.body').style.backgroundImage = 'url(./assets/shubNiggurath.jpg)'
+};
+
+
 
 /* ----------------- Ancient choice end ----------------- */
 
@@ -110,62 +129,66 @@ function shuffle(array) {
 
 function deckForm () {
 
-   
    let deckFirstStage = [];
    let deckSecondStage = [];
    let deckThirdStage = [];
-   shuffle(cardsDataBrown);
-   shuffle(cardsDataGreen);
-   shuffle(cardsDataBlue);
 
+   let greenCardsArr = JSON.parse(JSON.stringify(cardsDataGreen))
+   let BrownCardsArr = JSON.parse(JSON.stringify(cardsDataBrown))
+   let blueCardsArr = JSON.parse(JSON.stringify(cardsDataBlue))
+
+
+   shuffle(BrownCardsArr);
+   shuffle(greenCardsArr);
+   shuffle(blueCardsArr);
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.greenCards); i++ ) {
-      deckFirstStage.push(cardsDataGreen[i])
-      cardsDataGreen.splice(i, 1)
+      deckFirstStage.push(greenCardsArr[i])
+      greenCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.brownCards); i++ ) {
-      deckFirstStage.push(cardsDataBrown[i])
-      cardsDataBrown.splice(i, 1)
+      deckFirstStage.push(BrownCardsArr[i])
+      BrownCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.blueCards); i++ ) {
-      deckFirstStage.push(cardsDataBlue[i])
-      cardsDataBlue.splice(i, 1)
+      deckFirstStage.push(blueCardsArr[i])
+      blueCardsArr.splice(i, 1)
    }
 
    
 
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.greenCards); i++ ) {
-      deckSecondStage.push(cardsDataGreen[i])
-      cardsDataGreen.splice(i, 1)
+      deckSecondStage.push(greenCardsArr[i])
+      greenCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.brownCards); i++ ) {
-      deckSecondStage.push(cardsDataBrown[i])
-      cardsDataBrown.splice(i, 1)
+      deckSecondStage.push(BrownCardsArr[i])
+      BrownCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.blueCards); i++ ) {
-      deckSecondStage.push(cardsDataBlue[i])
-      cardsDataBlue.splice(i, 1)
+      deckSecondStage.push(blueCardsArr[i])
+      blueCardsArr.splice(i, 1)
    }
 
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.greenCards); i++ ) {
-      deckThirdStage.push(cardsDataGreen[i])
-      cardsDataGreen.splice(i, 1)
+      deckThirdStage.push(greenCardsArr[i])
+      greenCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.brownCards); i++ ) {
-      deckThirdStage.push(cardsDataBrown[i])
-      cardsDataBrown.splice(i, 1)
+      deckThirdStage.push(BrownCardsArr[i])
+      BrownCardsArr.splice(i, 1)
    }
 
    for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.blueCards); i++ ) {
-      deckThirdStage.push(cardsDataBlue[i])
-      cardsDataBlue.splice(i, 1)
+      deckThirdStage.push(blueCardsArr[i])
+      blueCardsArr.splice(i, 1)
    }
 
 
@@ -181,22 +204,139 @@ function deckForm () {
    deckThirdStage = _.shuffle(deckThirdStage);
    console.log('третий этап после шафла', deckThirdStage);
 
-   deck = [...deckFirstStage, ...deckSecondStage, ...deckThirdStage];
-   console.log('колода', deck);
+
+   deck= [...deckFirstStage, ...deckSecondStage, ...deckThirdStage]
+   console.log('колода', deck)
+
    acum = deck.length - 1;
+
+   takeCards.style.background = "url('./assets/mythicCardBackground.png')"
+   showCard.style.background = 'rgba(0, 0, 0, 0)'
    
 }
 /* Form Deck end */
 
+/* Form Deck for Hard level start */
+function deckFormHard () {
+
+   let deckFirstStage = [];
+   let deckSecondStage = [];
+   let deckThirdStage = [];
+
+   let greenCardsArr = JSON.parse(JSON.stringify(cardsDataGreen))
+   let BrownCardsArr = JSON.parse(JSON.stringify(cardsDataBrown))
+   let blueCardsArr = JSON.parse(JSON.stringify(cardsDataBlue))
+   
+   for (let m=0; m < (greenCardsArr.length); m++) {
+      if (greenCardsArr[m].difficulty === 'easy') {
+         greenCardsArr.splice(m, 1)
+      }
+   }
+
+   let greenCardForHard = cardsDataGreen.filter(function(notEasy) {
+      return notEasy.difficulty !== 'easy';
+   });
+
+
+   let brownCardForHard = BrownCardsArr.filter(function(notEasy) {
+      return notEasy.difficulty !== 'easy';
+   });
+
+   let blueCardForHard = cardsDataBlue.filter(function(notEasy) {
+      return notEasy.difficulty !== 'easy';
+   });
+
+
+
+
+
+   shuffle(greenCardForHard);
+   shuffle(brownCardForHard);
+   shuffle(blueCardForHard);
+
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.greenCards); i++ ) {
+      deckFirstStage.push(greenCardForHard[i])
+      greenCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.brownCards); i++ ) {
+      deckFirstStage.push(brownCardForHard[i])
+      brownCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].firstStage.blueCards); i++ ) {
+      deckFirstStage.push(blueCardForHard[i])
+      blueCardForHard.splice(i, 1)
+   }
+
+   
+
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.greenCards); i++ ) {
+      deckSecondStage.push(greenCardForHard[i])
+      greenCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.brownCards); i++ ) {
+      deckSecondStage.push(brownCardForHard[i])
+      brownCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].secondStage.blueCards); i++ ) {
+      deckSecondStage.push(blueCardForHard[i])
+      blueCardForHard.splice(i, 1)
+   }
+
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.greenCards); i++ ) {
+      deckThirdStage.push(greenCardForHard[i])
+      greenCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.brownCards); i++ ) {
+      deckThirdStage.push(brownCardForHard[i])
+      brownCardForHard.splice(i, 1)
+   }
+
+   for (let i=0 ; i < (ancientsData[ancientsNumber].thirdStage.blueCards); i++ ) {
+      deckThirdStage.push(blueCardForHard[i])
+      blueCardForHard.splice(i, 1)
+   }
+
+
+   console.log('певрый этап до шафла', deckFirstStage);
+   deckFirstStage = _.shuffle(deckFirstStage);
+   console.log('певрый этап после шафла', deckFirstStage);
+
+   console.log('второй этап до шафла', deckSecondStage);
+   deckSecondStage = _.shuffle(deckSecondStage);
+   console.log('второй этап после шафла', deckSecondStage);
+
+   console.log('третий этап до шафла', deckThirdStage);
+   deckThirdStage = _.shuffle(deckThirdStage);
+   console.log('третий этап после шафла', deckThirdStage);
+
+
+   deck= [...deckFirstStage, ...deckSecondStage, ...deckThirdStage]
+   console.log('колода', deck)
+
+   acum = deck.length - 1;
+   takeCards.style.background = "url('./assets/mythicCardBackground.png')"
+   showCard.style.background = 'rgba(0, 0, 0, 0)'
+   
+}
+
+/* Form Deck for Hard level end */
 
 /* Show Deck  to user start */
+
 let takeCards = document.querySelector('.cards_shirt');
 let showCard = document.querySelector('.show_cards');
 
 
-buttonShafle.addEventListener('click', deckForm); //формируем колоду
-
 takeCards.onclick = function  () {
+
 
    console.log(` url(./assets/MythicCards/${deck[acum].color}/${deck[acum].id}.png`)
    showCard.style.background = `center / contain url(./assets/MythicCards/${deck[acum].color}/${deck[acum].id}.png`;
@@ -242,23 +382,23 @@ takeCards.onclick = function  () {
 
    if (acum === 0) {
       takeCards.style.background = 'rgba(0, 0, 0, 0)'
+
    }
    // tracker end
 
-
-   
-
-
-
-
    acum -= 1
-
-
 }
 
 /* Show Deck  to user end */
 
+/* BUTTON LEVEL START */
 
+let normalButton = document.querySelector('.classic')
+let hardbutton = document.querySelector('.hard')
+
+
+normalButton.addEventListener('click', deckForm); //формируем колоду
+hardbutton.addEventListener('click', deckFormHard); //формируем колоду
 
 
 
