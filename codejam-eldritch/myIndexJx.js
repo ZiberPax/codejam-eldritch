@@ -335,59 +335,60 @@ let takeCards = document.querySelector('.cards_shirt');
 let showCard = document.querySelector('.show_cards');
 
 
+let m = 0
 takeCards.onclick = function  () {
-
-
-   console.log(` url(./assets/MythicCards/${deck[acum].color}/${deck[acum].id}.png`)
-   showCard.style.background = `center / contain url(./assets/MythicCards/${deck[acum].color}/${deck[acum].id}.png`;
-
-
-   // tracker start
-   if (deck[acum].color === 'green' && numOfGreenCardsStage3 !== 0) { //check first stage green
-
-      numOfGreenCardsStage3 -= 1;
-    
-      greenStageThree.textContent = numOfGreenCardsStage3;
-   } else if (deck[acum].color === 'green' && numOfGreenCardsStage2 !== 0) { //check second stage green
-      numOfGreenCardsStage2 -= 1;      
-      greenStageTwo.textContent = numOfGreenCardsStage2;
-   } else if (deck[acum].color === 'green' && numOfGreenCardsStage1 !== 0){
-      console.log(numOfGreenCardsStage3)
-      numOfGreenCardsStage1 -= 1;      
-      greenStageOne.textContent = numOfGreenCardsStage1;
-   }
+   if (m <= acum) {
+      console.log(` url(./assets/MythicCards/${deck[m].color}/${deck[m].id}.png`)
+      showCard.style.background = `center / contain url(./assets/MythicCards/${deck[m].color}/${deck[m].id}.png`;
    
-   if (deck[acum].color === 'brown' && numOfBrownCardsStage3 !== 0) { //check first stage brown
-      numOfBrownCardsStage3 -= 1;
-      BrownStageThree.textContent = numOfBrownCardsStage3;
-   } else if (deck[acum].color === 'brown' && numOfBrownCardsStage2 !== 0) { //check second stage brown
-      numOfBrownCardsStage2 -= 1;
-      BrownStageTwo.textContent = numOfBrownCardsStage2;
-   } else if (deck[acum].color === 'brown' && numOfBrownCardsStage1 !== 0){
-      numOfBrownCardsStage1 -= 1;      
-      BrownStageOne.textContent = numOfBrownCardsStage1;
+   
+      if (deck[m].color === 'green' && numOfGreenCardsStage1 !== 0){
+         numOfGreenCardsStage1 -= 1;      
+         greenStageOne.textContent = numOfGreenCardsStage1;
+      } else if (deck[m].color === 'green' && numOfGreenCardsStage2 !== 0) { //check second stage green
+         numOfGreenCardsStage2 -= 1;      
+         greenStageTwo.textContent = numOfGreenCardsStage2;
+      } else if (deck[m].color === 'green' && numOfGreenCardsStage3 !== 0) { //check first stage green
+   
+         numOfGreenCardsStage3 -= 1;
+       
+         greenStageThree.textContent = numOfGreenCardsStage3;
+      }
+
+      if (deck[m].color === 'brown' && numOfBrownCardsStage1 !== 0){
+         numOfBrownCardsStage1 -= 1;      
+         BrownStageOne.textContent = numOfBrownCardsStage1;
+      } else if (deck[m].color === 'brown' && numOfBrownCardsStage2 !== 0) { //check second stage brown
+         numOfBrownCardsStage2 -= 1;
+         BrownStageTwo.textContent = numOfBrownCardsStage2;
+      } else if (deck[m].color === 'brown' && numOfBrownCardsStage3 !== 0) { //check first stage brown
+         numOfBrownCardsStage3 -= 1;
+         BrownStageThree.textContent = numOfBrownCardsStage3;
+      }
+      // tracker start
+
+      if (deck[m].color === 'blue' && numOfBlueCardsStage1 !== 0) {
+         console.log(numOfBlueCardsStage3)
+         numOfBlueCardsStage1 -= 1;      
+         BlueStageOne.textContent = numOfBlueCardsStage1;
+      } else if (deck[m].color === 'blue' && numOfBlueCardsStage2 !== 0) { //check second stage blue
+         numOfBlueCardsStage2 -= 1;
+         BlueStageTwo.textContent = numOfBlueCardsStage2;
+      } else if (deck[m].color === 'blue' && numOfBlueCardsStage3 !== 0) { //check first stage blue
+         numOfBlueCardsStage3 -= 1;
+         BlueStageThree.textContent = numOfBlueCardsStage3;
+      }     
+   
+      if (m === acum) {
+         takeCards.style.background = 'rgba(0, 0, 0, 0)'
+   
+      }
+      // tracker end
+   
+      m = m + 1
+      }
    }
 
-   if (deck[acum].color === 'blue' && numOfBlueCardsStage3 !== 0) { //check first stage blue
-      numOfBlueCardsStage3 -= 1;
-      BlueStageThree.textContent = numOfBlueCardsStage3;
-   } else if (deck[acum].color === 'blue' && numOfBlueCardsStage2 !== 0) { //check second stage blue
-      numOfBlueCardsStage2 -= 1;
-      BlueStageTwo.textContent = numOfBlueCardsStage2;
-   } else if (deck[acum].color === 'blue' && numOfBlueCardsStage1 !== 0) {
-      console.log(numOfBlueCardsStage3)
-      numOfBlueCardsStage1 -= 1;      
-      BlueStageOne.textContent = numOfBlueCardsStage1;
-   }
-
-   if (acum === 0) {
-      takeCards.style.background = 'rgba(0, 0, 0, 0)'
-
-   }
-   // tracker end
-
-   acum -= 1
-}
 
 /* Show Deck  to user end */
 
